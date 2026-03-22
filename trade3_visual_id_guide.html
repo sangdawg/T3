@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade3 — Brand Identity System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────────────────────────────
+     COLOUR TOKENS
+  ───────────────────────────────────────────── */
+  :root {
+    /* Violet Scale */
+    --violet-50:  #F0EAFA;
+    --violet-100: #D8C4F3;
+    --violet-200: #B898E9;
+    --violet-300: #8F61D9;
+    --violet-400: #6A35C5;
+    --violet-500: #3B128D;
+    --violet-600: #310E7A;
+    --violet-700: #260A62;
+    --violet-800: #1A0748;
+    --violet-900: #0F0430;
+    --violet-950: #07021A;
+
+    /* Orange Scale */
+    --orange-50:  #FFF3EE;
+    --orange-100: #FFD9CC;
+    --orange-200: #FFB49F;
+    --orange-300: #FF8B6B;
+    --orange-400: #FB6E4C;
+    --orange-500: #F75835;
+    --orange-600: #D43E1D;
+    --orange-700: #AE2D10;
+    --orange-800: #821E08;
+    --orange-900: #531103;
+    --orange-950: #2E0800;
+
+    /* Cream / Background Light Scale */
+    --cream-50:   #FFFDFB;
+    --cream-100:  #FDF5EF;
+    --cream-200:  #FAE9DA;
+    --cream-300:  #F5D7BF;
+    --cream-400:  #EEC3A0;
+    --cream-500:  #E4A97E;
+    --cream-600:  #CB8457;
+    --cream-700:  #A5623A;
+    --cream-800:  #7A4422;
+    --cream-900:  #4E2A10;
+    --cream-950:  #2A1505;
+
+    /* Navy / Background Dark Scale */
+    --navy-50:    #EEEEF8;
+    --navy-100:   #CCCCE8;
+    --navy-200:   #9999CF;
+    --navy-300:   #6666AD;
+    --navy-400:   #333385;
+    --navy-500:   #060430;
+    --navy-600:   #050328;
+    --navy-700:   #040220;
+    --navy-800:   #030118;
+    --navy-900:   #02010E;
+    --navy-950:   #010007;
+
+    /* Neutral / Greyscale */
+    --neutral-0:    #FFFFFF;
+    --neutral-50:   #F9F9F9;
+    --neutral-100:  #F0F0F0;
+    --neutral-200:  #D9D9D9;
+    --neutral-300:  #BDBDBD;
+    --neutral-400:  #9E9E9E;
+    --neutral-500:  #757575;
+    --neutral-600:  #616161;
+    --neutral-700:  #424242;
+    --neutral-800:  #2C2C2C;
+    --neutral-900:  #1A1A1A;
+    --neutral-950:  #0D0D0D;
+
+    /* Semantic Light Mode */
+    --bg-primary:    var(--cream-100);
+    --bg-secondary:  #FFFFFF;
+    --bg-tertiary:   var(--cream-200);
+    --bg-inverse:    var(--navy-500);
+    --text-primary:  var(--navy-500);
+    --text-secondary: #4A4870;
+    --text-tertiary: #8885AA;
+    --text-inverse:  #FFFFFF;
+    --text-brand:    var(--violet-500);
+    --text-accent:   var(--orange-500);
+    --border-default: var(--cream-300);
+    --border-strong:  var(--violet-200);
+
+    /* Brand */
+    --brand-primary:   var(--violet-500);
+    --brand-secondary: var(--orange-500);
+
+    /* Type */
+    --font-display: 'Raleway', sans-serif;
+    --font-body:    'Karla', sans-serif;
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+  }
+
+  [data-theme="dark"] {
+    --bg-primary:    var(--navy-500);
+    --bg-secondary:  #0B0840;
+    --bg-tertiary:   #10093A;
+    --bg-inverse:    var(--cream-100);
+    --text-primary:  #EEEDF8;
+    --text-secondary: #9997C5;
+    --text-tertiary: #5D5A8A;
+    --text-inverse:  var(--navy-500);
+    --text-brand:    var(--violet-300);
+    --text-accent:   var(--orange-400);
+    --border-default: #1A1660;
+    --border-strong:  var(--violet-700);
+  }
+
+  /* ─────────────────────────────────────────────
+     RESET & BASE
+  ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────────────────────────────────────────
+     LAYOUT
+  ───────────────────────────────────────────── */
+  .wrapper {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+  }
+
+  .section {
+    padding: var(--space-20) 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  /* ─────────────────────────────────────────────
+     HEADER / NAV
+  ───────────────────────────────────────────── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-default);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.3s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--brand-primary);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+  }
+
+  .version-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: 3px 10px;
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .toggle-track {
+    width: 40px;
+    height: 22px;
+    border-radius: var(--radius-full);
+    background: var(--border-default);
+    position: relative;
+    transition: background 0.2s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  .toggle-track.active { background: var(--brand-primary); }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .toggle-track.active .toggle-thumb { transform: translateX(18px); }
+
+  /* ─────────────────────────────────────────────
+     SECTION LABELS
+  ───────────────────────────────────────────── */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange-500);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    line-height: 1.1;
+  }
+
+  .section-desc {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin-bottom: var(--space-12);
+  }
+
+  /* ─────────────────────────────────────────────
+     HERO
+  ───────────────────────────────────────────── */
+  .hero {
+    padding: var(--space-24) 0 var(--space-20);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,18,141,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange-500);
+    margin-bottom: var(--space-5);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero h1 span { color: var(--brand-primary); }
+
+  .hero-meta {
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+
+  .hero-meta-item {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .hero-meta-item strong {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  /* ─────────────────────────────────────────────
+     COLOUR SYSTEM
+  ───────────────────────────────────────────── */
+  .color-group {
+    margin-bottom: var(--space-12);
+  }
+
+  .color-group-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .color-scale {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    gap: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .color-swatch {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-2);
+    cursor: pointer;
+    transition: transform 0.15s;
+    position: relative;
+  }
+
+  .color-swatch:hover { z-index: 2; transform: scale(1.05); }
+
+  .swatch-step {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+  }
+
+  .swatch-hex {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-top: 1px;
+  }
+
+  .swatch-base-tag {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .color-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+
+  .color-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+  }
+
+  .color-card-swatch {
+    height: 80px;
+  }
+
+  .color-card-info {
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+  }
+
+  .color-card-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .color-card-hex {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .color-card-use {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: var(--space-2);
+    line-height: 1.5;
+  }
+
+  /* Semantic tokens table */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+
+  .token-table thead tr {
+    border-bottom: 2px solid var(--border-default);
+  }
+
+  .token-table th {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .token-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    vertical-align: middle;
+  }
+
+  .token-table tr:last-child td { border-bottom: none; }
+
+  .token-swatch-inline {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .token-name {
+    font-family: monospace;
+    font-size: 12px;
+    background: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    color: var(--violet-500);
+    white-space: nowrap;
+  }
+
+  [data-theme="dark"] .token-name { color: var(--violet-300); }
+
+  /* ─────────────────────────────────────────────
+     TYPOGRAPHY
+  ───────────────────────────────────────────── */
+  .type-scale-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: baseline;
+    gap: var(--space-6);
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--border-default);
+  }
+
+  .type-scale-row:last-child { border-bottom: none; }
+
+  .type-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .type-step {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange-500);
+  }
+
+  .type-specs {
+    font-family: monospace;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.8;
+  }
+
+  .type-sample { color: var(--text-primary); }
+
+  .type-display-1 {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  .type-display-2 {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+  }
+
+  .type-display-3 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .type-h1 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .type-h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+
+  .type-h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .type-h4 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+  }
+
+  .type-subtitle-lg {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+  }
+
+  .type-subtitle-sm {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+  }
+
+  .type-body-lg {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .type-body-md {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .type-body-sm {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .type-label-lg {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  .type-label-sm {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .type-caption {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.55;
+    color: var(--text-tertiary);
+  }
+
+  .type-overline {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .type-mono {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.6;
+  }
+
+  /* Weight showcase */
+  .weight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .weight-card {
+    padding: var(--space-5);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+  }
+
+  .weight-sample {
+    font-family: var(--font-display);
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .weight-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+
+  .weight-value {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  /* ─────────────────────────────────────────────
+     USAGE EXAMPLES (Components)
+  ───────────────────────────────────────────── */
+  .examples-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .example-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+  }
+
+  .example-preview {
+    padding: var(--space-8);
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+  }
+
+  .example-preview.dark-bg {
+    background: var(--navy-500);
+  }
+
+  .example-label-bar {
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-default);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* Buttons */
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+    letter-spacing: 0.01em;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+  }
+
+  .btn-lg { font-size: 15px; padding: 14px 28px; }
+  .btn-md { font-size: 14px; padding: 10px 20px; }
+  .btn-sm { font-size: 13px; padding: 7px 14px; }
+
+  .btn-primary {
+    background: var(--violet-500);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: var(--violet-600); }
+
+  .btn-accent {
+    background: var(--orange-500);
+    color: #fff;
+  }
+
+  .btn-accent:hover { background: var(--orange-600); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--violet-500);
+    border: 2px solid var(--violet-500);
+  }
+
+  .btn-secondary:hover { background: var(--violet-50); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-default);
+  }
+
+  .btn-ghost:hover { background: var(--bg-tertiary); }
+
+  .btn-white {
+    background: #fff;
+    color: var(--violet-500);
+  }
+
+  .btn-white:hover { background: var(--cream-200); }
+
+  .btn-row {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Badge */
+  .badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+  }
+
+  .badge-violet { background: var(--violet-100); color: var(--violet-600); }
+  .badge-orange { background: var(--orange-100); color: var(--orange-700); }
+  .badge-green  { background: #D1FAE5; color: #065F46; }
+  .badge-gray   { background: var(--neutral-100); color: var(--neutral-600); }
+  [data-theme="dark"] .badge-violet { background: var(--violet-900); color: var(--violet-300); }
+  [data-theme="dark"] .badge-orange { background: var(--orange-950); color: var(--orange-400); }
+
+  /* Stat card */
+  .stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    min-width: 160px;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+    letter-spacing: 0.02em;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-delta {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: #059669;
+  }
+
+  /* Dark stat */
+  .stat-card-dark {
+    background: var(--violet-900);
+    border: 1px solid var(--violet-800);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    min-width: 160px;
+  }
+
+  .stat-card-dark .stat-label { color: var(--violet-300); }
+  .stat-card-dark .stat-value { color: #fff; }
+  .stat-card-dark .stat-delta { color: var(--orange-400); }
+
+  /* Input */
+  .input-field {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .input-field:focus { border-color: var(--violet-500); box-shadow: 0 0 0 3px rgba(59,18,141,0.1); }
+
+  .input-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: block;
+    letter-spacing: 0.01em;
+  }
+
+  .input-group { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 280px; }
+
+  /* Toast */
+  .toast {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-md);
+    max-width: 300px;
+  }
+
+  .toast-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .toast-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .toast-body {
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+
+  .toast-success { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+  .toast-error   { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+  .toast-info    { background: var(--violet-50); color: var(--violet-700); border: 1px solid var(--violet-200); }
+
+  [data-theme="dark"] .toast-success { background: #064E3B; border-color: #065F46; }
+  [data-theme="dark"] .toast-error   { background: #7F1D1D; border-color: #991B1B; }
+  [data-theme="dark"] .toast-info    { background: var(--violet-900); border-color: var(--violet-700); color: var(--violet-200); }
+
+  /* ─────────────────────────────────────────────
+     DARK MODE SHOWCASE
+  ───────────────────────────────────────────── */
+  .dark-panel {
+    background: var(--navy-500);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    margin-top: var(--space-8);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dark-panel::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,18,141,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .dark-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,88,53,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .dark-panel-inner { position: relative; z-index: 1; }
+
+  .dark-panel-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange-400);
+    margin-bottom: var(--space-4);
+  }
+
+  .dark-panel-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #EEEDF8;
+    line-height: 1.05;
+    margin-bottom: var(--space-4);
+  }
+
+  .dark-panel-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #9997C5;
+    max-width: 480px;
+    margin-bottom: var(--space-8);
+  }
+
+  .dark-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .dark-divider {
+    height: 1px;
+    background: #1A1660;
+    margin: var(--space-6) 0;
+  }
+
+  /* Light panel */
+  .light-panel {
+    background: var(--cream-100);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    margin-top: var(--space-8);
+    border: 1px solid var(--cream-300);
+  }
+
+  .light-panel-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange-600);
+    margin-bottom: var(--space-4);
+  }
+
+  .light-panel-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--navy-500);
+    line-height: 1.05;
+    margin-bottom: var(--space-4);
+  }
+
+  .light-panel-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4A4870;
+    max-width: 460px;
+    margin-bottom: var(--space-8);
+  }
+
+  /* ─────────────────────────────────────────────
+     GRADIENTS
+  ───────────────────────────────────────────── */
+  .gradient-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .gradient-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+  }
+
+  .gradient-swatch {
+    height: 100px;
+  }
+
+  .gradient-info {
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-default);
+  }
+
+  .gradient-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .gradient-spec {
+    font-family: monospace;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    word-break: break-all;
+  }
+
+  /* ─────────────────────────────────────────────
+     COPY-ON-CLICK
+  ───────────────────────────────────────────── */
+  .copied-toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--navy-500);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  .copied-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Misc utility */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .mt-8 { margin-top: var(--space-8); }
+  .mt-6 { margin-top: var(--space-6); }
+  .mt-4 { margin-top: var(--space-4); }
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .color-scale { grid-template-columns: repeat(6, 1fr); }
+    .examples-grid { grid-template-columns: 1fr; }
+    .dark-stats-row { grid-template-columns: 1fr 1fr; }
+    .gradient-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .type-scale-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 44px; }
+  }
+
+  /* Smooth transitions */
+  * { transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+  .btn, .color-swatch { transition: all 0.15s ease; }
+</style>
+</head>
+<body>
+
+<div class="copied-toast" id="copiedToast">Copied!</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="wrapper header-inner">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="logo-wordmark">
+        <div class="logo-mark">T3</div>
+        Trade3
+      </div>
+      <span class="version-badge">Brand Identity v2.0</span>
+    </div>
+    <div class="theme-toggle">
+      <span id="themeLabel">Light</span>
+      <button class="toggle-track" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <div class="toggle-thumb"></div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrapper">
+    <div class="hero-eyebrow">Brand Identity System</div>
+    <h1>Building the<br><span>visual language</span><br>of Trade3.</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Version</strong>2.0 — 2025</div>
+      <div class="hero-meta-item"><strong>Fonts</strong>Raleway + Karla</div>
+      <div class="hero-meta-item"><strong>Palette</strong>5 scales, 55 tokens</div>
+      <div class="hero-meta-item"><strong>Mode</strong>Light &amp; Dark</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- 01 COLOUR SYSTEM -->
+<!-- ─────────────────────────────────────────── -->
+<section class="section" id="colours">
+  <div class="wrapper">
+    <div class="section-label">01 — Colour</div>
+    <h2 class="section-title">Colour System</h2>
+    <p class="section-desc">Every colour is available in 11 stops (50–950), giving you precise control across UI states, accessibility levels, and dark mode surfaces. Click any swatch to copy its hex value.</p>
+
+    <!-- Violet -->
+    <div class="color-group">
+      <div class="color-group-title">
+        <div style="width:12px;height:12px;border-radius:3px;background:#3B128D;"></div>
+        Violet — Primary Brand
+      </div>
+      <div class="color-scale">
+        <div class="color-swatch" style="background:#F0EAFA;" onclick="copyColor('#F0EAFA')">
+          <span class="swatch-step" style="color:#3B128D;">50</span>
+          <span class="swatch-hex" style="color:#3B128D;">#F0EAFA</span>
+        </div>
+        <div class="color-swatch" style="background:#D8C4F3;" onclick="copyColor('#D8C4F3')">
+          <span class="swatch-step" style="color:#3B128D;">100</span>
+          <span class="swatch-hex" style="color:#3B128D;">#D8C4F3</span>
+        </div>
+        <div class="color-swatch" style="background:#B898E9;" onclick="copyColor('#B898E9')">
+          <span class="swatch-step" style="color:#3B128D;">200</span>
+          <span class="swatch-hex" style="color:#3B128D;">#B898E9</span>
+        </div>
+        <div class="color-swatch" style="background:#8F61D9;" onclick="copyColor('#8F61D9')">
+          <span class="swatch-step" style="color:#fff;">300</span>
+          <span class="swatch-hex" style="color:#fff;">#8F61D9</span>
+        </div>
+        <div class="color-swatch" style="background:#6A35C5;" onclick="copyColor('#6A35C5')">
+          <span class="swatch-step" style="color:#fff;">400</span>
+          <span class="swatch-hex" style="color:#fff;">#6A35C5</span>
+        </div>
+        <div class="color-swatch" style="background:#3B128D;" onclick="copyColor('#3B128D')">
+          <span class="swatch-step" style="color:#fff;">500</span>
+          <span class="swatch-hex" style="color:#fff;">#3B128D</span>
+          <span class="swatch-base-tag" style="color:#fff;">BASE</span>
+        </div>
+        <div class="color-swatch" style="background:#310E7A;" onclick="copyColor('#310E7A')">
+          <span class="swatch-step" style="color:#fff;">600</span>
+          <span class="swatch-hex" style="color:#fff;">#310E7A</span>
+        </div>
+        <div class="color-swatch" style="background:#260A62;" onclick="copyColor('#260A62')">
+          <span class="swatch-step" style="color:#fff;">700</span>
+          <span class="swatch-hex" style="color:#fff;">#260A62</span>
+        </div>
+        <div class="color-swatch" style="background:#1A0748;" onclick="copyColor('#1A0748')">
+          <span class="swatch-step" style="color:#fff;">800</span>
+          <span class="swatch-hex" style="color:#fff;">#1A0748</span>
+        </div>
+        <div class="color-swatch" style="background:#0F0430;" onclick="copyColor('#0F0430')">
+          <span class="swatch-step" style="color:#fff;">900</span>
+          <span class="swatch-hex" style="color:#fff;">#0F0430</span>
+        </div>
+        <div class="color-swatch" style="background:#07021A;" onclick="copyColor('#07021A')">
+          <span class="swatch-step" style="color:#fff;">950</span>
+          <span class="swatch-hex" style="color:#fff;">#07021A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orange -->
+    <div class="color-group">
+      <div class="color-group-title">
+        <div style="width:12px;height:12px;border-radius:3px;background:#F75835;"></div>
+        Orange — Secondary / Accent
+      </div>
+      <div class="color-scale">
+        <div class="color-swatch" style="background:#FFF3EE;" onclick="copyColor('#FFF3EE')">
+          <span class="swatch-step" style="color:#F75835;">50</span>
+          <span class="swatch-hex" style="color:#F75835;">#FFF3EE</span>
+        </div>
+        <div class="color-swatch" style="background:#FFD9CC;" onclick="copyColor('#FFD9CC')">
+          <span class="swatch-step" style="color:#D43E1D;">100</span>
+          <span class="swatch-hex" style="color:#D43E1D;">#FFD9CC</span>
+        </div>
+        <div class="color-swatch" style="background:#FFB49F;" onclick="copyColor('#FFB49F')">
+          <span class="swatch-step" style="color:#AE2D10;">200</span>
+          <span class="swatch-hex" style="color:#AE2D10;">#FFB49F</span>
+        </div>
+        <div class="color-swatch" style="background:#FF8B6B;" onclick="copyColor('#FF8B6B')">
+          <span class="swatch-step" style="color:#fff;">300</span>
+          <span class="swatch-hex" style="color:#fff;">#FF8B6B</span>
+        </div>
+        <div class="color-swatch" style="background:#FB6E4C;" onclick="copyColor('#FB6E4C')">
+          <span class="swatch-step" style="color:#fff;">400</span>
+          <span class="swatch-hex" style="color:#fff;">#FB6E4C</span>
+        </div>
+        <div class="color-swatch" style="background:#F75835;" onclick="copyColor('#F75835')">
+          <span class="swatch-step" style="color:#fff;">500</span>
+          <span class="swatch-hex" style="color:#fff;">#F75835</span>
+          <span class="swatch-base-tag" style="color:#fff;">BASE</span>
+        </div>
+        <div class="color-swatch" style="background:#D43E1D;" onclick="copyColor('#D43E1D')">
+          <span class="swatch-step" style="color:#fff;">600</span>
+          <span class="swatch-hex" style="color:#fff;">#D43E1D</span>
+        </div>
+        <div class="color-swatch" style="background:#AE2D10;" onclick="copyColor('#AE2D10')">
+          <span class="swatch-step" style="color:#fff;">700</span>
+          <span class="swatch-hex" style="color:#fff;">#AE2D10</span>
+        </div>
+        <div class="color-swatch" style="background:#821E08;" onclick="copyColor('#821E08')">
+          <span class="swatch-step" style="color:#fff;">800</span>
+          <span class="swatch-hex" style="color:#fff;">#821E08</span>
+        </div>
+        <div class="color-swatch" style="background:#531103;" onclick="copyColor('#531103')">
+          <span class="swatch-step" style="color:#fff;">900</span>
+          <span class="swatch-hex" style="color:#fff;">#531103</span>
+        </div>
+        <div class="color-swatch" style="background:#2E0800;" onclick="copyColor('#2E0800')">
+          <span class="swatch-step" style="color:#fff;">950</span>
+          <span class="swatch-hex" style="color:#fff;">#2E0800</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cream -->
+    <div class="color-group">
+      <div class="color-group-title">
+        <div style="width:12px;height:12px;border-radius:3px;background:#FDF5EF;border:1px solid #e8d9cc;"></div>
+        Cream — Light Background
+      </div>
+      <div class="color-scale">
+        <div class="color-swatch" style="background:#FFFDFB;" onclick="copyColor('#FFFDFB')">
+          <span class="swatch-step" style="color:#7A4422;">50</span>
+          <span class="swatch-hex" style="color:#7A4422;">#FFFDFB</span>
+        </div>
+        <div class="color-swatch" style="background:#FDF5EF;" onclick="copyColor('#FDF5EF')">
+          <span class="swatch-step" style="color:#7A4422;">100</span>
+          <span class="swatch-hex" style="color:#7A4422;">#FDF5EF</span>
+          <span class="swatch-base-tag" style="color:#7A4422;">BASE</span>
+        </div>
+        <div class="color-swatch" style="background:#FAE9DA;" onclick="copyColor('#FAE9DA')">
+          <span class="swatch-step" style="color:#7A4422;">200</span>
+          <span class="swatch-hex" style="color:#7A4422;">#FAE9DA</span>
+        </div>
+        <div class="color-swatch" style="background:#F5D7BF;" onclick="copyColor('#F5D7BF')">
+          <span class="swatch-step" style="color:#7A4422;">300</span>
+          <span class="swatch-hex" style="color:#7A4422;">#F5D7BF</span>
+        </div>
+        <div class="color-swatch" style="background:#EEC3A0;" onclick="copyColor('#EEC3A0')">
+          <span class="swatch-step" style="color:#fff;">400</span>
+          <span class="swatch-hex" style="color:#fff;">#EEC3A0</span>
+        </div>
+        <div class="color-swatch" style="background:#E4A97E;" onclick="copyColor('#E4A97E')">
+          <span class="swatch-step" style="color:#fff;">500</span>
+          <span class="swatch-hex" style="color:#fff;">#E4A97E</span>
+        </div>
+        <div class="color-swatch" style="background:#CB8457;" onclick="copyColor('#CB8457')">
+          <span class="swatch-step" style="color:#fff;">600</span>
+          <span class="swatch-hex" style="color:#fff;">#CB8457</span>
+        </div>
+        <div class="color-swatch" style="background:#A5623A;" onclick="copyColor('#A5623A')">
+          <span class="swatch-step" style="color:#fff;">700</span>
+          <span class="swatch-hex" style="color:#fff;">#A5623A</span>
+        </div>
+        <div class="color-swatch" style="background:#7A4422;" onclick="copyColor('#7A4422')">
+          <span class="swatch-step" style="color:#fff;">800</span>
+          <span class="swatch-hex" style="color:#fff;">#7A4422</span>
+        </div>
+        <div class="color-swatch" style="background:#4E2A10;" onclick="copyColor('#4E2A10')">
+          <span class="swatch-step" style="color:#fff;">900</span>
+          <span class="swatch-hex" style="color:#fff;">#4E2A10</span>
+        </div>
+        <div class="color-swatch" style="background:#2A1505;" onclick="copyColor('#2A1505')">
+          <span class="swatch-step" style="color:#fff;">950</span>
+          <span class="swatch-hex" style="color:#fff;">#2A1505</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navy -->
+    <div class="color-group">
+      <div class="color-group-title">
+        <div style="width:12px;height:12px;border-radius:3px;background:#060430;"></div>
+        Navy — Dark Background
+      </div>
+      <div class="color-scale">
+        <div class="color-swatch" style="background:#EEEEF8;" onclick="copyColor('#EEEEF8')">
+          <span class="swatch-step" style="color:#060430;">50</span>
+          <span class="swatch-hex" style="color:#060430;">#EEEEF8</span>
+        </div>
+        <div class="color-swatch" style="background:#CCCCE8;" onclick="copyColor('#CCCCE8')">
+          <span class="swatch-step" style="color:#060430;">100</span>
+          <span class="swatch-hex" style="color:#060430;">#CCCCE8</span>
+        </div>
+        <div class="color-swatch" style="background:#9999CF;" onclick="copyColor('#9999CF')">
+          <span class="swatch-step" style="color:#060430;">200</span>
+          <span class="swatch-hex" style="color:#060430;">#9999CF</span>
+        </div>
+        <div class="color-swatch" style="background:#6666AD;" onclick="copyColor('#6666AD')">
+          <span class="swatch-step" style="color:#fff;">300</span>
+          <span class="swatch-hex" style="color:#fff;">#6666AD</span>
+        </div>
+        <div class="color-swatch" style="background:#333385;" onclick="copyColor('#333385')">
+          <span class="swatch-step" style="color:#fff;">400</span>
+          <span class="swatch-hex" style="color:#fff;">#333385</span>
+        </div>
+        <div class="color-swatch" style="background:#060430;" onclick="copyColor('#060430')">
+          <span class="swatch-step" style="color:#fff;">500</span>
+          <span class="swatch-hex" style="color:#fff;">#060430</span>
+          <span class="swatch-base-tag" style="color:#fff;">BASE</span>
+        </div>
+        <div class="color-swatch" style="background:#050328;" onclick="copyColor('#050328')">
+          <span class="swatch-step" style="color:#fff;">600</span>
+          <span class="swatch-hex" style="color:#fff;">#050328</span>
+        </div>
+        <div class="color-swatch" style="background:#040220;" onclick="copyColor('#040220')">
+          <span class="swatch-step" style="color:#fff;">700</span>
+          <span class="swatch-hex" style="color:#fff;">#040220</span>
+        </div>
+        <div class="color-swatch" style="background:#030118;" onclick="copyColor('#030118')">
+          <span class="swatch-step" style="color:#fff;">800</span>
+          <span class="swatch-hex" style="color:#fff;">#030118</span>
+        </div>
+        <div class="color-swatch" style="background:#02010E;" onclick="copyColor('#02010E')">
+          <span class="swatch-step" style="color:#fff;">900</span>
+          <span class="swatch-hex" style="color:#fff;">#02010E</span>
+        </div>
+        <div class="color-swatch" style="background:#010007;" onclick="copyColor('#010007')">
+          <span class="swatch-step" style="color:#fff;">950</span>
+          <span class="swatch-hex" style="color:#fff;">#010007</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neutral -->
+    <div class="color-group">
+      <div class="color-group-title">
+        <div style="width:12px;height:12px;border-radius:3px;background:#757575;"></div>
+        Neutral — Greyscale
+      </div>
+      <div class="color-scale">
+        <div class="color-swatch" style="background:#FFFFFF;border:1px solid #eee;" onclick="copyColor('#FFFFFF')">
+          <span class="swatch-step" style="color:#616161;">0</span>
+          <span class="swatch-hex" style="color:#616161;">#FFFFFF</span>
+        </div>
+        <div class="color-swatch" style="background:#F9F9F9;" onclick="copyColor('#F9F9F9')">
+          <span class="swatch-step" style="color:#616161;">50</span>
+          <span class="swatch-hex" style="color:#616161;">#F9F9F9</span>
+        </div>
+        <div class="color-swatch" style="background:#F0F0F0;" onclick="copyColor('#F0F0F0')">
+          <span class="swatch-step" style="color:#616161;">100</span>
+          <span class="swatch-hex" style="color:#616161;">#F0F0F0</span>
+        </div>
+        <div class="color-swatch" style="background:#D9D9D9;" onclick="copyColor('#D9D9D9')">
+          <span class="swatch-step" style="color:#424242;">200</span>
+          <span class="swatch-hex" style="color:#424242;">#D9D9D9</span>
+        </div>
+        <div class="color-swatch" style="background:#BDBDBD;" onclick="copyColor('#BDBDBD')">
+          <span class="swatch-step" style="color:#424242;">300</span>
+          <span class="swatch-hex" style="color:#424242;">#BDBDBD</span>
+        </div>
+        <div class="color-swatch" style="background:#9E9E9E;" onclick="copyColor('#9E9E9E')">
+          <span class="swatch-step" style="color:#fff;">400</span>
+          <span class="swatch-hex" style="color:#fff;">#9E9E9E</span>
+        </div>
+        <div class="color-swatch" style="background:#757575;" onclick="copyColor('#757575')">
+          <span class="swatch-step" style="color:#fff;">500</span>
+          <span class="swatch-hex" style="color:#fff;">#757575</span>
+        </div>
+        <div class="color-swatch" style="background:#616161;" onclick="copyColor('#616161')">
+          <span class="swatch-step" style="color:#fff;">600</span>
+          <span class="swatch-hex" style="color:#fff;">#616161</span>
+        </div>
+        <div class="color-swatch" style="background:#424242;" onclick="copyColor('#424242')">
+          <span class="swatch-step" style="color:#fff;">700</span>
+          <span class="swatch-hex" style="color:#fff;">#424242</span>
+        </div>
+        <div class="color-swatch" style="background:#2C2C2C;" onclick="copyColor('#2C2C2C')">
+          <span class="swatch-step" style="color:#fff;">800</span>
+          <span class="swatch-hex" style="color:#fff;">#2C2C2C</span>
+        </div>
+        <div class="color-swatch" style="background:#1A1A1A;" onclick="copyColor('#1A1A1A')">
+          <span class="swatch-step" style="color:#fff;">900</span>
+          <span class="swatch-hex" style="color:#fff;">#1A1A1A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradients -->
+    <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-0.01em;color:var(--text-primary);margin-bottom:var(--space-2);">Brand Gradients</h3>
+    <p style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:0;">Pre-approved gradient combinations for headers, cards, and marketing material.</p>
+    <div class="gradient-grid">
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #3B128D 0%, #6A35C5 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Violet Rise</div>
+          <div class="gradient-spec">linear-gradient(135deg, #3B128D → #6A35C5)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #3B128D 0%, #F75835 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Brand Fusion</div>
+          <div class="gradient-spec">linear-gradient(135deg, #3B128D → #F75835)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #060430 0%, #3B128D 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Deep Space</div>
+          <div class="gradient-spec">linear-gradient(135deg, #060430 → #3B128D)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #F75835 0%, #FB6E4C 50%, #FFB49F 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Ember</div>
+          <div class="gradient-spec">linear-gradient(135deg, #F75835 → #FFB49F)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #060430 0%, #1A0748 50%, #F75835 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Midnight Ember</div>
+          <div class="gradient-spec">linear-gradient(135deg, #060430 → #F75835)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(135deg, #FDF5EF 0%, #FAE9DA 100%);"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Warm Canvas</div>
+          <div class="gradient-spec">linear-gradient(135deg, #FDF5EF → #FAE9DA)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic Tokens -->
+    <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-0.01em;color:var(--text-primary);margin:var(--space-12) 0 var(--space-2);">Semantic Design Tokens</h3>
+    <p style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:var(--space-6);">Use these tokens instead of raw hex values in all product code. They adapt automatically to light and dark mode.</p>
+    <table class="token-table">
+      <thead>
+        <tr>
+          <th>Token</th>
+          <th>Light</th>
+          <th>Dark</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="token-name">--bg-primary</code></td>
+          <td><span class="token-swatch-inline" style="background:#FDF5EF;"></span> Cream 100</td>
+          <td><span class="token-swatch-inline" style="background:#060430;"></span> Navy 500</td>
+          <td>Main page background</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--bg-secondary</code></td>
+          <td><span class="token-swatch-inline" style="background:#FFFFFF;border:1px solid #eee;"></span> White</td>
+          <td><span class="token-swatch-inline" style="background:#0B0840;"></span> Navy +5%</td>
+          <td>Cards, panels, inputs</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--bg-tertiary</code></td>
+          <td><span class="token-swatch-inline" style="background:#FAE9DA;"></span> Cream 200</td>
+          <td><span class="token-swatch-inline" style="background:#10093A;"></span> Navy +10%</td>
+          <td>Hover states, code blocks</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--text-primary</code></td>
+          <td><span class="token-swatch-inline" style="background:#060430;"></span> Navy 500</td>
+          <td><span class="token-swatch-inline" style="background:#EEEDF8;"></span> Navy 50</td>
+          <td>Body copy, headings</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--text-secondary</code></td>
+          <td><span class="token-swatch-inline" style="background:#4A4870;"></span> Custom</td>
+          <td><span class="token-swatch-inline" style="background:#9997C5;"></span> Custom</td>
+          <td>Subheadings, labels</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--text-tertiary</code></td>
+          <td><span class="token-swatch-inline" style="background:#8885AA;"></span> Custom</td>
+          <td><span class="token-swatch-inline" style="background:#5D5A8A;"></span> Custom</td>
+          <td>Captions, placeholders</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--text-brand</code></td>
+          <td><span class="token-swatch-inline" style="background:#3B128D;"></span> Violet 500</td>
+          <td><span class="token-swatch-inline" style="background:#8F61D9;"></span> Violet 300</td>
+          <td>Brand-coloured text, links</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--text-accent</code></td>
+          <td><span class="token-swatch-inline" style="background:#F75835;"></span> Orange 500</td>
+          <td><span class="token-swatch-inline" style="background:#FB6E4C;"></span> Orange 400</td>
+          <td>Call-to-action, highlights</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--border-default</code></td>
+          <td><span class="token-swatch-inline" style="background:#F5D7BF;"></span> Cream 300</td>
+          <td><span class="token-swatch-inline" style="background:#1A1660;"></span> Custom</td>
+          <td>Default dividers and borders</td>
+        </tr>
+        <tr>
+          <td><code class="token-name">--border-strong</code></td>
+          <td><span class="token-swatch-inline" style="background:#B898E9;"></span> Violet 200</td>
+          <td><span class="token-swatch-inline" style="background:#260A62;"></span> Violet 700</td>
+          <td>Focus rings, emphasis borders</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- 02 TYPOGRAPHY -->
+<!-- ─────────────────────────────────────────── -->
+<section class="section" id="typography">
+  <div class="wrapper">
+    <div class="section-label">02 — Typography</div>
+    <h2 class="section-title">Typography System</h2>
+    <p class="section-desc">Two typefaces work in tandem: Raleway for display and structural hierarchy, Karla for readable body copy at all sizes. Every step has defined size, weight, tracking, and line-height.</p>
+
+    <!-- Typeface intro cards -->
+    <div class="two-col mt-6">
+      <div style="padding:var(--space-8);background:var(--bg-secondary);border:1px solid var(--border-default);border-radius:var(--radius-lg);">
+        <div class="section-label" style="margin-bottom:var(--space-4);">Primary — Display</div>
+        <div style="font-family:'Raleway',sans-serif;font-size:48px;font-weight:800;letter-spacing:-0.04em;color:var(--text-primary);line-height:1;margin-bottom:var(--space-4);">Raleway</div>
+        <div style="font-family:'Raleway',sans-serif;font-size:16px;color:var(--text-secondary);line-height:1.6;font-weight:400;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789</div>
+        <div style="margin-top:var(--space-4);font-family:var(--font-body);font-size:12px;color:var(--text-tertiary);">Use for: Logotype · Display · H1–H4 · Pull quotes</div>
+      </div>
+      <div style="padding:var(--space-8);background:var(--bg-secondary);border:1px solid var(--border-default);border-radius:var(--radius-lg);">
+        <div class="section-label" style="margin-bottom:var(--space-4);">Secondary — Body</div>
+        <div style="font-family:'Karla',sans-serif;font-size:48px;font-weight:800;letter-spacing:-0.04em;color:var(--text-primary);line-height:1;margin-bottom:var(--space-4);">Karla</div>
+        <div style="font-family:'Karla',sans-serif;font-size:16px;color:var(--text-secondary);line-height:1.6;font-weight:400;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789</div>
+        <div style="margin-top:var(--space-4);font-family:var(--font-body);font-size:12px;color:var(--text-tertiary);">Use for: Body · UI Labels · Captions · Overlines · Tables</div>
+      </div>
+    </div>
+
+    <!-- Type scale -->
+    <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-0.01em;color:var(--text-primary);margin-top:var(--space-12);margin-bottom:var(--space-2);">Type Scale</h3>
+    <p style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:var(--space-6);">All sizes are defined in px for design tools. Map to rem in code (1rem = 16px).</p>
+
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Display 1</span>
+        <span class="type-specs">Raleway 800<br>72px / −4% / 0.95lh<br>Hero sections only</span>
+      </div>
+      <div class="type-sample type-display-1">Trade3</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Display 2</span>
+        <span class="type-specs">Raleway 800<br>56px / −3.5% / 1.0lh<br>Landing page headers</span>
+      </div>
+      <div class="type-sample type-display-2">Trade3</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Display 3</span>
+        <span class="type-specs">Raleway 700<br>40px / −2.5% / 1.05lh<br>Section headers</span>
+      </div>
+      <div class="type-sample type-display-3">Decentralised Finance</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Heading 1</span>
+        <span class="type-specs">Raleway 700<br>32px / −2% / 1.1lh<br>Page titles</span>
+      </div>
+      <div class="type-sample type-h1">Unlock Trade Finance</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Heading 2</span>
+        <span class="type-specs">Raleway 600<br>24px / −1.5% / 1.2lh<br>Card headers, modal titles</span>
+      </div>
+      <div class="type-sample type-h2">Global Market Access</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Heading 3</span>
+        <span class="type-specs">Raleway 600<br>20px / −1% / 1.25lh<br>Subsections, sidebar headings</span>
+      </div>
+      <div class="type-sample type-h3">Invoice Financing Dashboard</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Heading 4</span>
+        <span class="type-specs">Raleway 600<br>17px / −0.5% / 1.3lh<br>Table headers, list headings</span>
+      </div>
+      <div class="type-sample type-h4">Transaction Summary</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Subtitle Large</span>
+        <span class="type-specs">Karla 500<br>18px / −1% / 1.5lh<br>Hero subtext</span>
+      </div>
+      <div class="type-sample type-subtitle-lg">We are building the infrastructure for accessible trade.</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Subtitle Small</span>
+        <span class="type-specs">Karla 500<br>16px / −0.5% / 1.5lh<br>Card subtitles</span>
+      </div>
+      <div class="type-sample type-subtitle-sm">Connecting SMEs with global liquidity pools.</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Body Large</span>
+        <span class="type-specs">Karla 400<br>16px / 0% / 1.7lh<br>Long-form content</span>
+      </div>
+      <div class="type-sample type-body-lg" style="max-width:540px;">Traditional trade finance is often complex, opaque, and inaccessible—especially for small and medium-sized enterprises in emerging markets. Trade3 changes this.</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Body Medium</span>
+        <span class="type-specs">Karla 400<br>14px / 0% / 1.65lh<br>UI body copy</span>
+      </div>
+      <div class="type-sample type-body-md" style="max-width:500px;">Your invoice has been submitted for verification. Funds will be available within 24–48 hours subject to counterparty confirmation.</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Body Small</span>
+        <span class="type-specs">Karla 400<br>13px / 0% / 1.6lh<br>Secondary descriptions</span>
+      </div>
+      <div class="type-sample type-body-sm" style="color:var(--text-secondary);">Last updated 2 hours ago · USD · All amounts inclusive of platform fees</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Label Large</span>
+        <span class="type-specs">Karla 600<br>14px / +1% / 1.4lh<br>Button text, form labels</span>
+      </div>
+      <div class="type-sample type-label-lg">Submit Application →</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Label Small</span>
+        <span class="type-specs">Karla 600<br>12px / +2% / 1.4lh<br>Tags, chip text, nav items</span>
+      </div>
+      <div class="type-sample type-label-sm">Active · Verified</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Caption</span>
+        <span class="type-specs">Karla 400<br>11px / +1% / 1.55lh<br>Footnotes, timestamps</span>
+      </div>
+      <div class="type-sample type-caption">Transaction ID: TXN-2024-009142 · Settled via Trade3 Protocol v2</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Overline</span>
+        <span class="type-specs">Karla 700<br>11px / +14% / 1.4lh · ALL CAPS<br>Section labels, eyebrows</span>
+      </div>
+      <div class="type-sample type-overline" style="color:var(--orange-500);">01 — Platform Overview</div>
+    </div>
+    <div class="type-scale-row">
+      <div class="type-meta">
+        <span class="type-step">Mono</span>
+        <span class="type-specs">SF Mono / Fira Code<br>13px / 0% / 1.6lh<br>Wallet addresses, code</span>
+      </div>
+      <div class="type-sample type-mono" style="color:var(--violet-500);">0x3B128D...F75835</div>
+    </div>
+
+    <!-- Weights -->
+    <h3 style="font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-0.01em;color:var(--text-primary);margin-top:var(--space-12);margin-bottom:var(--space-2);">Raleway Weights</h3>
+    <div class="weight-grid">
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:200;">Aa</div>
+        <div class="weight-label">ExtraLight</div>
+        <div class="weight-value">200 · Decorative use only</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:300;">Aa</div>
+        <div class="weight-label">Light</div>
+        <div class="weight-value">300 · Large display contrast</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:400;">Aa</div>
+        <div class="weight-label">Regular</div>
+        <div class="weight-value">400 · Rarely used in display</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:500;">Aa</div>
+        <div class="weight-label">Medium</div>
+        <div class="weight-value">500 · Navigation, UI headings</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:600;">Aa</div>
+        <div class="weight-label">SemiBold</div>
+        <div class="weight-value">600 · H2–H4, subheadings</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:700;">Aa</div>
+        <div class="weight-label">Bold</div>
+        <div class="weight-value">700 · H1, section titles</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:800;">Aa</div>
+        <div class="weight-label">ExtraBold ★</div>
+        <div class="weight-value">800 · Display, brand voice</div>
+      </div>
+      <div class="weight-card">
+        <div class="weight-sample" style="font-weight:900;">Aa</div>
+        <div class="weight-label">Black</div>
+        <div class="weight-value">900 · Posters, campaigns</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- 03 COMPONENTS -->
+<!-- ─────────────────────────────────────────── -->
+<section class="section" id="components">
+  <div class="wrapper">
+    <div class="section-label">03 — Components</div>
+    <h2 class="section-title">UI Components</h2>
+    <p class="section-desc">Reusable interface patterns built from the colour and type system. These demonstrate how the identity translates into product UI.</p>
+
+    <div class="examples-grid">
+
+      <!-- Buttons -->
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="btn-row">
+            <button class="btn btn-primary btn-md">Get Started</button>
+            <button class="btn btn-accent btn-md">Apply Now</button>
+            <button class="btn btn-secondary btn-md">Learn More</button>
+            <button class="btn btn-ghost btn-md">Cancel</button>
+          </div>
+        </div>
+        <div class="example-label-bar">Buttons — All Variants</div>
+      </div>
+
+      <!-- Buttons Dark -->
+      <div class="example-card">
+        <div class="example-preview dark-bg">
+          <div class="btn-row">
+            <button class="btn btn-white btn-md">Connect Wallet</button>
+            <button class="btn btn-accent btn-md">Submit Invoice</button>
+            <button class="btn btn-md" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2);">View All</button>
+          </div>
+        </div>
+        <div class="example-label-bar">Buttons — Dark Surface</div>
+      </div>
+
+      <!-- Button Sizes -->
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="btn-row">
+            <button class="btn btn-primary btn-lg">Large CTA</button>
+            <button class="btn btn-primary btn-md">Medium</button>
+            <button class="btn btn-primary btn-sm">Small</button>
+          </div>
+        </div>
+        <div class="example-label-bar">Buttons — Sizing Scale</div>
+      </div>
+
+      <!-- Badges -->
+      <div class="example-card">
+        <div class="example-preview" style="gap:12px;display:flex;flex-wrap:wrap;justify-content:center;">
+          <span class="badge badge-violet">Verified</span>
+          <span class="badge badge-orange">Pending</span>
+          <span class="badge badge-green">Funded</span>
+          <span class="badge badge-gray">Archived</span>
+          <span class="badge" style="background:var(--violet-500);color:#fff;">Trade3</span>
+        </div>
+        <div class="example-label-bar">Status Badges</div>
+      </div>
+
+      <!-- Input -->
+      <div class="example-card">
+        <div class="example-preview">
+          <div class="input-group">
+            <label class="input-label">Invoice Amount (USD)</label>
+            <input class="input-field" type="text" placeholder="e.g. 50,000.00" />
+          </div>
+        </div>
+        <div class="example-label-bar">Form Input — Default</div>
+      </div>
+
+      <!-- Stats Light -->
+      <div class="example-card">
+        <div class="example-preview" style="gap:16px;flex-wrap:wrap;">
+          <div class="stat-card">
+            <div class="stat-label">Total Financed</div>
+            <div class="stat-value">$2.4B</div>
+            <div class="stat-delta">↑ 18.3% MoM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active SMEs</div>
+            <div class="stat-value">12K</div>
+            <div class="stat-delta">↑ 4.1% MoM</div>
+          </div>
+        </div>
+        <div class="example-label-bar">Stat Cards — Light</div>
+      </div>
+
+      <!-- Stats Dark -->
+      <div class="example-card">
+        <div class="example-preview dark-bg" style="gap:16px;flex-wrap:wrap;">
+          <div class="stat-card-dark">
+            <div class="stat-label">Yield APY</div>
+            <div class="stat-value">8.72%</div>
+            <div class="stat-delta">+0.4% 7d</div>
+          </div>
+          <div class="stat-card-dark">
+            <div class="stat-label">TVL</div>
+            <div class="stat-value">$980M</div>
+            <div class="stat-delta">+2.1% 7d</div>
+          </div>
+        </div>
+        <div class="example-label-bar">Stat Cards — Dark</div>
+      </div>
+
+      <!-- Toast -->
+      <div class="example-card">
+        <div class="example-preview" style="flex-direction:column;gap:10px;">
+          <div class="toast toast-success">
+            <div class="toast-icon" style="background:#10B981;"></div>
+            <div>
+              <div class="toast-title">Invoice Funded</div>
+              <div class="toast-body">$45,000 disbursed to your wallet.</div>
+            </div>
+          </div>
+          <div class="toast toast-info">
+            <div class="toast-icon" style="background:var(--violet-500);"></div>
+            <div>
+              <div class="toast-title">Verification Pending</div>
+              <div class="toast-body">Counterparty review in progress.</div>
+            </div>
+          </div>
+          <div class="toast toast-error">
+            <div class="toast-icon" style="background:#EF4444;"></div>
+            <div>
+              <div class="toast-title">Transaction Failed</div>
+              <div class="toast-body">Insufficient collateral. Try again.</div>
+            </div>
+          </div>
+        </div>
+        <div class="example-label-bar">Notification Toasts</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- 04 CONTEXT EXAMPLES -->
+<!-- ─────────────────────────────────────────── -->
+<section class="section" id="context">
+  <div class="wrapper">
+    <div class="section-label">04 — In Context</div>
+    <h2 class="section-title">Light &amp; Dark Surfaces</h2>
+    <p class="section-desc">Full compositions demonstrating the identity across both modes — suitable as a reference for marketing pages, dashboard panels, and investor decks.</p>
+
+    <!-- Dark Panel -->
+    <div class="dark-panel">
+      <div class="dark-panel-inner">
+        <div class="dark-panel-eyebrow">Trade3 Platform · Live</div>
+        <div class="dark-panel-title">Unlock global trade<br>finance on-chain.</div>
+        <div class="dark-panel-body">We are building a decentralized platform that unlocks access to trade finance for underserved businesses around the world. Traditional trade finance is often complex, opaque, and inaccessible.</div>
+        <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-8);">
+          <button class="btn btn-accent btn-lg">Apply for Financing</button>
+          <button class="btn btn-lg" style="background:rgba(255,255,255,0.08);color:#EEEDF8;border:1px solid rgba(255,255,255,0.15);">Read the Docs</button>
+        </div>
+        <div class="dark-divider"></div>
+        <div class="dark-stats-row">
+          <div>
+            <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5D5A8A;margin-bottom:8px;">Total Financed</div>
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;letter-spacing:-0.03em;color:#EEEDF8;line-height:1;">$2.4B</div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--orange-400);font-weight:600;margin-top:4px;">↑ 18.3% MoM</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5D5A8A;margin-bottom:8px;">SME Partners</div>
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;letter-spacing:-0.03em;color:#EEEDF8;line-height:1;">12,400</div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--orange-400);font-weight:600;margin-top:4px;">Across 40+ markets</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#5D5A8A;margin-bottom:8px;">Avg. Yield APY</div>
+            <div style="font-family:var(--font-display);font-size:36px;font-weight:800;letter-spacing:-0.03em;color:#EEEDF8;line-height:1;">8.7%</div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--orange-400);font-weight:600;margin-top:4px;">Net of platform fees</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Light Panel -->
+    <div class="light-panel">
+      <div class="light-panel-eyebrow">For Investors · Capital Markets</div>
+      <div class="light-panel-title">Real-world assets,<br>transparent yields.</div>
+      <div class="light-panel-body">Trade3 tokenises receivables from verified trade flows across Asia, the Middle East, and Latin America. Investors gain access to short-duration, high-quality yield backed by real commerce.</div>
+      <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-8);flex-wrap:wrap;">
+        <button class="btn btn-primary btn-lg">Explore Opportunities</button>
+        <button class="btn btn-secondary btn-lg">Download Prospectus</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);">
+        <div style="padding:var(--space-5);background:#fff;border:1px solid var(--cream-300);border-radius:var(--radius-md);">
+          <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:8px;">Min. Ticket</div>
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--navy-500);line-height:1;">$25K</div>
+          <div style="font-family:var(--font-body);font-size:12px;color:#4A4870;margin-top:4px;font-weight:500;">USD equivalent</div>
+        </div>
+        <div style="padding:var(--space-5);background:#fff;border:1px solid var(--cream-300);border-radius:var(--radius-md);">
+          <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:8px;">Avg. Duration</div>
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--navy-500);line-height:1;">90d</div>
+          <div style="font-family:var(--font-body);font-size:12px;color:#4A4870;margin-top:4px;font-weight:500;">Rolling positions</div>
+        </div>
+        <div style="padding:var(--space-5);background:#fff;border:1px solid var(--cream-300);border-radius:var(--radius-md);">
+          <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange-600);margin-bottom:8px;">Defaults to Date</div>
+          <div style="font-family:var(--font-display);font-size:28px;font-weight:800;letter-spacing:-0.03em;color:var(--navy-500);line-height:1;">0</div>
+          <div style="font-family:var(--font-body);font-size:12px;color:#4A4870;margin-top:4px;font-weight:500;">Full track record</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────── -->
+<!-- 05 USAGE RULES -->
+<!-- ─────────────────────────────────────────── -->
+<section class="section" id="rules">
+  <div class="wrapper">
+    <div class="section-label">05 — Do's &amp; Don'ts</div>
+    <h2 class="section-title">Usage Guidelines</h2>
+    <p class="section-desc">Rules that protect brand consistency across all applications — from product UI to pitch decks to social media.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+      <div style="padding:var(--space-6);background:var(--bg-secondary);border:2px solid #A7F3D0;border-radius:var(--radius-lg);">
+        <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#059669;margin-bottom:var(--space-5);">✓ Do</div>
+        <ul style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.9;list-style:none;padding:0;">
+          <li>Use Raleway 800 for hero headlines</li>
+          <li>Use Karla 400/500 for all body copy</li>
+          <li>Use Violet 500 as the primary brand colour</li>
+          <li>Use Orange 500 only for CTAs and accents</li>
+          <li>Maintain minimum 4.5:1 contrast on body text</li>
+          <li>Use the cream background for light-mode surfaces</li>
+          <li>Use Navy 500 for dark-mode base backgrounds</li>
+          <li>Pair Overline + Display for section headers</li>
+          <li>Use semantic tokens in product code</li>
+          <li>Test all colour usage in both modes</li>
+        </ul>
+      </div>
+      <div style="padding:var(--space-6);background:var(--bg-secondary);border:2px solid #FECACA;border-radius:var(--radius-lg);">
+        <div style="font-family:var(--font-body);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#DC2626;margin-bottom:var(--space-5);">✗ Don't</div>
+        <ul style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.9;list-style:none;padding:0;">
+          <li>Use system fonts (Arial, Inter, Roboto) in brand materials</li>
+          <li>Use Orange 500 as a background colour</li>
+          <li>Place Violet 500 text on Navy 500 backgrounds</li>
+          <li>Use font weights below 400 for body copy</li>
+          <li>Introduce new typefaces without brand approval</li>
+          <li>Use colours outside the defined palette</li>
+          <li>Use raw hex values in product code — use tokens</li>
+          <li>Display the logo at sizes below 24px</li>
+          <li>Stretch or distort the logotype</li>
+          <li>Use gradients as text colour without testing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:var(--space-12) 0;border-top:1px solid var(--border-default);">
+  <div class="wrapper" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+    <div class="logo-wordmark">
+      <div class="logo-mark">T3</div>
+      Trade3 Brand System
+    </div>
+    <div style="font-family:var(--font-body);font-size:12px;color:var(--text-tertiary);">Version 2.0 · Raleway + Karla · 5 colour scales · Light &amp; Dark mode</div>
+  </div>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const label = document.getElementById('themeLabel');
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      html.removeAttribute('data-theme');
+      toggle.classList.remove('active');
+      label.textContent = 'Light';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      toggle.classList.add('active');
+      label.textContent = 'Dark';
+    }
+  }
+
+  function copyColor(hex) {
+    navigator.clipboard.writeText(hex).then(() => {
+      const toast = document.getElementById('copiedToast');
+      toast.textContent = `Copied ${hex}`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    });
+  }
+</script>
+
+</body>
+</html>
